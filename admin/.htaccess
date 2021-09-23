@@ -1,0 +1,23 @@
+# force https
+RewriteEngine on
+RewriteCond %{HTTPS} off
+RewriteRule ^(.)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+
+# env hide
+RewriteRule ^controller/.env login.php?q=$1 [L,QSA]
+RewriteRule ^controller/.env/ login.php?q=$1 [L,QSA]
+
+# home
+RewriteRule ^home index.php?q=$1 [L,QSA]
+RewriteRule ^home/ index.php?q=$1 [L,QSA]
+
+# login
+RewriteRule ^login login.php?q=$1 [L,QSA]
+RewriteRule ^login/ login.php?q=$1 [L,QSA]
+# api login
+RewriteRule ^controller/login controller/login/login.php [L,QSA]
+RewriteRule ^controller/login/ controller/login/login.php [L,QSA]
+
+
